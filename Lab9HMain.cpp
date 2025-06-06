@@ -1,9 +1,3 @@
-// Lab9HMain.cpp
-// Runs on MSPM0G3507
-// Lab 9 ECE319H
-// Your name
-// Last Modified: 12/26/2024
-
 #include <cstdint>
 #include <machine/_stdint.h>
 #include <stdio.h>
