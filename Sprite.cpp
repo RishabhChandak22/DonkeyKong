@@ -113,7 +113,6 @@ const uint16_t* Sprite::GetImage(){
 }
 
 
-// Check collision using ECE319K distance
 int Sprite::CheckCollision(const Sprite& other) const {
     int32_t dx = abs(x/VXMULT - other.x/VXMULT);  // Horizontal distance
     int32_t dy = abs(y/VYMULT - other.y/VYMULT);  // Vertical distance
