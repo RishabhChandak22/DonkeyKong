@@ -40,10 +40,6 @@ int8_t playerChar = 0;
 uint32_t DKMaxTime = 350;
 uint8_t barrelVelocity = 1;
 
-// ****note to ECE319K students****
-// the data sheet says the ADC does not work when clock is 80 MHz
-// however, the ADC seems to work on my boards at 80 MHz
-// I suggest you try 80MHz, but if it doesn't work, switch to 40MHz
 void PLL_Init(void){ // set phase lock loop (PLL)
   // Clock_Init40MHz(); // run this line for 40MHz
   Clock_Init80MHz(0);   // run this line for 80MHz
@@ -58,7 +54,7 @@ uint32_t Random(uint32_t n){
   return (Random32()>>16)%n;
 }
 
-SlidePot Sensor(1500,0); // copy calibration from Lab 7
+SlidePot Sensor(1500,0);
 
 void image_addBLK(int16_t x, int16_t y, const uint16_t *image){
   int ctr = 0;
@@ -79,13 +75,6 @@ void image_addBLK(int16_t x, int16_t y, const uint16_t *image){
 
 uint8_t StartScreen(){
   ST7735_DrawBitmap(0, 159, englishspanish, 128, 160);
-  /*ST7735_SetCursor(5, 2);
-  ST7735_OutString((char *)"Donkey Kong");
-  ST7735_SetCursor(3, 5);
-  ST7735_OutString((char *)"English  Espanol");
-  ST7735_SetCursor(4, 7);
-  ST7735_OutString((char *)" <-       ->");
-  ST7735_DrawBitmap(53, 115, dkStand, 24, 24);*/
   int input = 0;
   while(((input & 1) != 1) && ((input & 4) != 4)){
     input = Switch_In();
@@ -543,20 +532,7 @@ int main2(void){ // main2
   PLL_Init(); // set bus speed
   LaunchPad_Init();
   ST7735_InitPrintf();
-    //note: if you colors are weird, see different options for
-    // ST7735_InitR(INITR_REDTAB); inside ST7735_InitPrintf()
   ST7735_FillScreen(ST7735_BLACK);
-  // ST7735_DrawBitmap(22, 159, PlayerShip0, 18,8); // player ship bottom
-  // ST7735_DrawBitmap(53, 151, Bunker0, 18,5);
-  // ST7735_DrawBitmap(42, 159, PlayerShip1, 18,8); // player ship bottom
-  // ST7735_DrawBitmap(62, 159, PlayerShip2, 18,8); // player ship bottom
-  // ST7735_DrawBitmap(82, 159, PlayerShip3, 18,8); // player ship bottom
-  // ST7735_DrawBitmap(0, 9, SmallEnemy10pointA, 16,10);
-  // ST7735_DrawBitmap(20,9, SmallEnemy10pointB, 16,10);
-  // ST7735_DrawBitmap(40, 9, SmallEnemy20pointA, 16,10);
-  // ST7735_DrawBitmap(60, 9, SmallEnemy20pointB, 16,10);
-  // ST7735_DrawBitmap(80, 9, SmallEnemy30pointA, 16,10);
-  //ST7735_DrawBitmap(0, 159, bg1, 128, 160);
   ST7735_DrawBitmap(0, 159, bg1, 128, 160);
   image_add(0, 159, mariomove, 17, 17, bg1, 0);
   image_add(50, 50, mariostand, 17, 17, bg1, 1);
@@ -629,8 +605,6 @@ int main(void){ // final main
   PLL_Init(); // set bus speed
   LaunchPad_Init();
   ST7735_InitPrintf();
-    //note: if you colors are weird, see different options for
-    // ST7735_InitR(INITR_REDTAB); inside ST7735_InitPrintf()
   ST7735_FillScreen(ST7735_BLACK);
   Sensor.Init(); // PB18 = ADC1 channel 5, slidepot
   Switch_Init(); // initialize switches
