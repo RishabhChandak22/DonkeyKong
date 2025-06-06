@@ -1,9 +1,3 @@
-/*
- * LED.h
- *
- *  Created on: Nov 5, 2023
- *      Author:
- */
 
 #ifndef LED_H_
 #define LED_H_
