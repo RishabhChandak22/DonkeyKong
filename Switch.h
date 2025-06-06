@@ -1,9 +1,4 @@
-/*
- * Switch.h
- *
- *  Created on: Nov 5, 2023
- *      Author: jonat
- */
+
 
 #ifndef SWITCH_H_
 #define SWITCH_H_
